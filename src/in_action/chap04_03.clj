@@ -35,3 +35,9 @@
   (fee-amount 0.04 user))
 (defmethod profit-based-affiliate-fee [:mint.com ::gold] [user]
   (fee-amount 0.05 user))
+
+; Derive for describing hierarchies
+(derive ::gold ::premier)
+
+(defn is-gold-premier []
+  (isa? ::gold ::premier))

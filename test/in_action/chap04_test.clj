@@ -37,3 +37,9 @@
   (testing "affiliate fee for [:mint.com, ::gold] user"
     (is (= 55.0 (profit-based-affiliate-fee user-5))))
 )
+
+(deftest testing-hierarchies-described-with-derive
+  (testing "::bronze is not ::premier"
+    (is (not (isa? ::bronze ::premier)))))
+  (testing "::gold is ::premier"
+    (is (is-gold-premier)))
