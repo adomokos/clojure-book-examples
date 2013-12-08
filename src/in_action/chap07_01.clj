@@ -52,3 +52,13 @@
 
 (defn addition [x y]
   (+ x y))
+
+; Creating a macro with local variable
+(defmacro def-logged-fn [fn-name args & body]
+  `(defn ~fn-name ~args
+     (let [now# (System/currentTimeMillis)]
+       (println "[" now# "] call to" (str (var ~fn-name)))
+       ~@body)))
+
+(def-logged-fn printname [name]
+  (str "hi " name))

@@ -14,10 +14,6 @@
   (testing "for 2 it returns 'even'"
     (is (= "even" (exhibits-full-oddity? 2)))))
 
-(deftest andriskanak
-  (testing "2 + 2 = 4"
-    (is (= 4 (addition 2 2))))
-  (testing "4 + 4 = 8"
-    (is (= 8 (addition 4 4))))
-  (testing "10 + 10 = 20"
-    (is (= 20 (addition 10 10)))))
+;(deftest test-logger-macro
+  ;(testing "logging with saying hi"
+    ;(is (= "hi John" (printname "John")))))
