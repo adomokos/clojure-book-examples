@@ -1,6 +1,7 @@
 (ns in-action.chap07-test
   (:require [clojure.test :refer :all]
-            [in-action.chap07_01 :refer :all]))
+            [in-action.chap07_01 :refer :all]
+            [in-action.chap07_03 :refer :all]))
 
 (deftest for-exhibits-oddity-for-true-case
   (testing "for 1 it returns 'Very odd, indeed!'"
@@ -17,3 +18,7 @@
 ;(deftest test-logger-macro
   ;(testing "logging with saying hi"
     ;(is (= "hi John" (printname "John")))))
+
+(deftest test-inflix-macro
+  (testing "simple inflix macro with operator in the middle"
+    (is (= 8 (inflix (2 + 6))))))
