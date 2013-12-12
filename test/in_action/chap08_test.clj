@@ -11,3 +11,12 @@
 (deftest test-as-string
   (let [date "2009-1-22"]
     (is (= (as-string date) "2009-01-22"))))
+
+(deftest test-incrementing
+  (let [date-string "2009-10-31"
+        n-day (increment-day date-string)
+        n-month (increment-month date-string)
+        n-year (increment-year date-string)]
+    (is (= n-day (date "2009-11-01")))
+    (is (= n-month (date "2009-11-30")))
+    (is (= n-year (date "2010-10-31")))))

@@ -29,3 +29,18 @@
         m (pad (month-from date))
         d (pad (day-from date))]
     (join "-" [y m d])))
+
+(defn increment-day [d]
+  (let [converted-date (date d)]
+    (doto converted-date
+      (.add Calendar/DAY_OF_MONTH 1))))
+
+(defn increment-month [d]
+  (let [converted-date (date d)]
+    (doto converted-date
+      (.add Calendar/MONTH 1))))
+
+(defn increment-year [d]
+  (let [converted-date (date d)]
+    (doto converted-date
+      (.add Calendar/YEAR 1))))
