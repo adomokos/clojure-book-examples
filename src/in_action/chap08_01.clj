@@ -30,17 +30,25 @@
         d (pad (day-from date))]
     (join "-" [y m d])))
 
+(defn date-operator [operation field]
+  (fn [d]
+    (doto (date d)
+      (.add field (operation 1)))))
+
 (defn increment-day [d]
-  (let [converted-date (date d)]
-    (doto converted-date
-      (.add Calendar/DAY_OF_MONTH 1))))
+  ((date-operator + Calendar/DAY_OF_MONTH) d))
 
 (defn increment-month [d]
-  (let [converted-date (date d)]
-    (doto converted-date
-      (.add Calendar/MONTH 1))))
+  ((date-operator + Calendar/MONTH) d))
 
 (defn increment-year [d]
-  (let [converted-date (date d)]
-    (doto converted-date
-      (.add Calendar/YEAR 1))))
+  ((date-operator + Calendar/YEAR) d))
+
+(defn decrement-day [d]
+  ((date-operator - Calendar/DAY_OF_MONTH) d))
+
+(defn decrement-month [d]
+  ((date-operator - Calendar/MONTH) d))
+
+(defn decrement-year [d]
+  ((date-operator - Calendar/YEAR) d))

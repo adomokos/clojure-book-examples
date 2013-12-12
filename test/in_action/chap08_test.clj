@@ -12,7 +12,7 @@
   (let [date "2009-1-22"]
     (is (= (as-string date) "2009-01-22"))))
 
-(deftest test-incrementing
+(deftest test-incrementing-date
   (let [date-string "2009-10-31"
         n-day (increment-day date-string)
         n-month (increment-month date-string)
@@ -20,3 +20,12 @@
     (is (= n-day (date "2009-11-01")))
     (is (= n-month (date "2009-11-30")))
     (is (= n-year (date "2010-10-31")))))
+
+(deftest test-decrementing-date
+  (let [date-string "2009-10-31"
+        n-day (decrement-day date-string)
+        n-month (decrement-month date-string)
+        n-year (decrement-year date-string)]
+    (is (= n-day (date "2009-10-30")))
+    (is (= n-month (date "2009-09-30")))
+    (is (= n-year (date "2008-10-31")))))
