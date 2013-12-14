@@ -32,3 +32,17 @@
       (is (= (count filtered) 2))
       (is (= (:amount (first filtered)) 20.0))
       (is (= (:amount (last filtered)) 30.0)))))
+
+
+; An example of using "are"
+(deftest test-to-upcase
+  (is (= "RATHORE" (to-upper "rathore")))
+  (is (= "1" (to-upper 1)))
+  (is (= "AMIT" (to-upper "AMIT"))))
+
+; The same example expressed with "are"
+(deftest test-to-upcase
+  (are [l u] (= u (to-upper l))
+       "RATHORE" "RATHORE"
+       "1" "1"
+       "amit" "AMIT"))

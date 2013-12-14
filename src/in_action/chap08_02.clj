@@ -11,9 +11,12 @@
 )
 
 (defn expenses-greater-than [expenses threshold]
-  (log-call "expenses-greater-than" threshold)
+  ;(log-call "expenses-greater-than" threshold)
   (filter #(> (:amount %) threshold) expenses))
 
 (defn fetch-expenses-greater-than [username start-date end-date threshold]
   (let [all (fetch-all-expenses username start-date end-date)]
     (expenses-greater-than all threshold)))
+
+(defn to-upper [s]
+  (.toUpperCase (str s)))
