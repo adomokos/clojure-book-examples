@@ -6,5 +6,7 @@
   :dependencies [
                  [org.clojure/clojure "1.5.1"]
                  [org.clojure/data.json "0.2.3"]
+                 [org.clojure/java.jdbc "0.2.3"]
+                 [postgresql "9.1-901.jdbc4"]
                 ]
   :main in-action.core)
