@@ -10,5 +10,6 @@
                  [postgresql "9.1-901.jdbc4"]
                  [ring "1.2.1"]
                  [compojure "1.1.6"]
+                 [hiccup "1.0.4"]
                 ]
   :main in-action.core)
