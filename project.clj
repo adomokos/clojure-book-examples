@@ -9,5 +9,6 @@
                  [org.clojure/java.jdbc "0.2.3"]
                  [postgresql "9.1-901.jdbc4"]
                  [ring "1.2.1"]
+                 [compojure "1.1.6"]
                 ]
   :main in-action.core)
