@@ -8,5 +8,6 @@
                  [org.clojure/data.json "0.2.3"]
                  [org.clojure/java.jdbc "0.2.3"]
                  [postgresql "9.1-901.jdbc4"]
+                 [ring "1.2.1"]
                 ]
   :main in-action.core)
