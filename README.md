@@ -1,6 +1,6 @@
-# in-action
+# clojure-book-examples
 
-A Clojure library designed to ... well, that part is up to you.
+Clojure book examples guided by tests.
 
 ## Usage
 
