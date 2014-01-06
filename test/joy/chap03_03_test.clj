@@ -22,3 +22,14 @@
 (deftest destructuring-from-a-map-test
   (testing "finding values by keys"
     (is (= "Steele, Guy Lewis" (name-builder-from-map guys-name-map)))))
+
+(deftest destructuring-with-map-like-arguments
+  (testing "when both of the arguments were passed"
+    (is (= [4 15] (first (find-values :p1 [4 15] :p2 [3 21]))))
+    (is (= [3 21] (last (find-values :p1 [4 15] :p2 [3 21])))))
+  (testing "when only the first arugment was passed"
+    (is (= [4 15] (first (find-values :p1 [4 15]))))
+    (is (= [1 1] (last (find-values :p1 [4 15])))))
+  (testing "when no argument was passed"
+    (is (= [0 0] (first (find-values))))
+    (is (= [1 1] (last (find-values))))))

@@ -18,3 +18,7 @@
   ;(let [{f-name :f-name m-name :m-name l-name :l-name} name-map]
   (let [{:keys [f-name m-name l-name]} name-map]
     (str l-name ", " f-name " " m-name)))
+
+(defn find-values
+      [& {:keys [p1 p2] :or {p1 [0 0] p2 [1 1]}}]
+  [p1 p2])
