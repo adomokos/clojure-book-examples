@@ -1,5 +1,6 @@
 (ns joy.core
-  (:gen-class))
+  (:gen-class)
+  (:require joy.chap07-04))
 
 (defn throw-catch [f]
   [(try
@@ -14,5 +15,5 @@
   ;; work around dangerous default behaviour in Clojure
   (alter-var-root #'*read-eval* (constantly false))
   ;(println "Hello, World!")
-  (throw-catch #(/ 10 0))
-  )
+  (joy.chap07-04/tail-pow 2 10))
+  

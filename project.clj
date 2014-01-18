@@ -12,4 +12,4 @@
                  [compojure "1.1.6"]
                  [hiccup "1.0.4"]
                 ]
-  :main in-action.core)
+  :main joy.core)
