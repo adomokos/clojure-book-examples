@@ -1,6 +1,7 @@
 (ns cookbook.01-primitives-test-02
   (:require [clojure.test :refer :all]
             [clojure.string :as str]
+            [inflections.core :as inf]
             [cookbook.01-primitives :refer :all]))
 
 (deftest formatting-strings-test
@@ -34,3 +35,14 @@
     (testing "using multiple delimiters with limit"
       (is (= ["2013" "04-05 14:39"]
              (str/split "2013-04-05 14:39" delimiter 2))))))
+
+(deftest test-inflections
+  (are [amount string pluralized]
+    (= (inf/pluralize amount string) pluralized)
+      1 "monkey" "1 monkey"
+      2 "monkey" "2 monkeys"
+      1 "milk" "1 milk"
+      2 "milk" "2 milk")
+  (is (= "MyObject" (inf/camelize "my_object")))
+  (is (= "my-most-favorite-url" (inf/parameterize "My most favorite url!")))
+  (is (= "42nd" (inf/ordinalize 42))))
