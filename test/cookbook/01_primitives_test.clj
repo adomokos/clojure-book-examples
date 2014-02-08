@@ -1,7 +1,7 @@
 (ns cookbook.01-primitives-test
   (:require [clojure.test :refer :all]
             [clojure.string :as str]
-            [cookbook.01-primitives-test :refer :all]))
+            [cookbook.01-primitives :refer :all]))
 
 (deftest changing-capitalization-test
   (testing "changing capitalization"
@@ -30,3 +30,20 @@
   (testing "right trim"
     (is (= "\t\t* Second-level bullet."
            (str/trimr "\t\t* Second-level bullet.\n")))))
+
+(deftest building-a-string-from-parts-test
+  (testing "concatenate strings"
+    (is (= "John Doe"
+           (str "John" " " "Doe"))))
+  (testing "collapsing a sequence of chars into string"
+    (is (= "Hello World!"
+           (apply str [\H \e \l \l \o \ \W \o \r \l \d \!]))))
+  (testing "joining values"
+    (is (= "milk, butter, flour, eggs",
+           (str/join  ", " ["milk" "butter" "flour" "eggs"])))))
+
+(deftest test-yelling
+  (are [string result]
+    (= (yelling? string) result)
+       "LOUD NOISES!" true
+       "Take a DEEP breath." false))
