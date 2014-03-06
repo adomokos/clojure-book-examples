@@ -40,19 +40,13 @@
 
 ; Vector destructuring
 
-(defn print-amounts
-  [[amount-1 amount-2]]
-  (println "amounts are:" amount-1 "and" amount-2))
+(defn find-amounts
+  ([[amount-1 amount-2]]
+    (str "amounts are: " amount-1 " and " amount-2)))
 
-(defn run-print-amounts []
-  (print-amounts [10.95 31.45]))
-
-(defn print-amounts-multiple
-  [[amount-1 amount-2 & remaining]]
-  (println "Amounts are:" amount-1 "," amount-2 "and" remaining))
-
-(defn run-print-amounts-multiple []
-  (print-amounts-multiple [10.95 31.45 22.36 2.95]))
+(defn find-amounts-with-remaining
+  ([[amount-1 amount-2 & remaining]]
+    (str "amounts are: " amount-1 " and " amount-2 " and " remaining)))
 
 ; Nested Vector destructuring
 (defn print-first-category [[[category amount] & _]]
