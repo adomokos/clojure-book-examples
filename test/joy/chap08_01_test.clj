@@ -12,6 +12,21 @@
   (testing "converting string to function"
     (is (= 3 (eval (list (symbol "+" ) 1 2))))))
 
+(deftest understanding-the-theading-macros
+  (let [c 5]
+    (testing "with ->"
+      (is (= 3
+             (-> c
+               (+ 3)
+               (/ 2)
+               (- 1)))))
+    (testing "with ->>"
+      (is (= 3/4
+             (->> c
+               (+ 3)
+               (/ 2)
+               (- 1)))))))
+
 (deftest contextual-eval-test
   (testing "expanding data into expression"
     (is (= 1001
