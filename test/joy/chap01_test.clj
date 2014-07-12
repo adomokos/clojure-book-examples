@@ -31,4 +31,8 @@
   (testing "the 3rd item is less than the previous"
     (is (not (< 0 1 -2 3 4 5 6 7 8 9)))))
 
-
+(deftest protocol-testing
+  (testing "extending a string"
+    (is (= "House of Leaves" (cat "House" " of Leaves"))))
+  (testing "extending a vector"
+    (is (= '(1 2 3 4 5 6) (cat [1 2 3] [4 5 6])))))

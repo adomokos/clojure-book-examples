@@ -21,3 +21,16 @@
   (if (< (get order op1) (get order op2))
     (r->lfix a op1 b op2 c)
     (l->rfix a op1 b op2 c)))
+
+(defprotocol Concatenatable
+  (cat [this other]))
+
+(extend-type String
+  Concatenatable
+  (cat [this other]
+    (.concat this other)))
+
+(extend-type java.util.List
+  Concatenatable
+  (cat [this other]
+    (concat this other)))
