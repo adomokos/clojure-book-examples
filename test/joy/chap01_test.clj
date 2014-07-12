@@ -36,3 +36,7 @@
     (is (= "House of Leaves" (cat "House" " of Leaves"))))
   (testing "extending a vector"
     (is (= '(1 2 3 4 5 6) (cat [1 2 3] [4 5 6])))))
+
+(deftest finding-items-on-a-chess-board
+  (testing "finding the value of top left"
+    (is (= \R (lookup3 (initial-board) "a1")))))
