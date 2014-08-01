@@ -13,4 +13,5 @@
                  [inflections "0.9.5"]
                  [hiccup "1.0.4"]
                 ]
-  :main joy.macros)
+;;  :main joy.macros
+)
