@@ -3,7 +3,7 @@
 
 (deftest maps-related-operations
   (testing "converting to sequences"
-    (is (= [[:a 1][:c 3][:b 2]]
+    (is (= [[:c 3][:b 2][:a 1]]
            (seq {:a 1 :b 2 :c 3}))))
   (testing "using zipmap"
     (is (= {:c 3 :b 2 :a 1}
