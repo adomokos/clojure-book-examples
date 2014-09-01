@@ -19,3 +19,19 @@
              {:band "Eno" :plays 2333 :loved 15}
              {:band "Magma" :plays 2665 :loved 31})
            (sort-by (columns [:plays :loved :band]) plays)))))
+
+(deftest looking-at-pure-functions-test
+  (testing "changing a value by a function for a key"
+    (is (= {:band "BURIAL"}
+           (keys-apply #(.toUpperCase %) #{:band} (plays 0)))))
+  (testing "manipulate the collection"
+    (is (= {:band "Burial" :plays 489 :loved 4}
+           (manip-map #(int (/ % 2)) #{:plays :loved} (plays 0))))))
+
+(deftest named-arguments-in-functions-test
+  (testing "when both p1 and p2 are provided"
+    (is (= -6.0 (slope :p1 [4 15] :p2 [3 21]))))
+  (testing "when only p2 is provided"
+    (is (= 0.5 (slope :p2 [2 1]))))
+  (testing "when no p1 or p2 were provided"
+    (is (= 1.0 (slope)))))
