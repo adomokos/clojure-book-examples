@@ -23,3 +23,12 @@
 (defn and-chain [x y z]
   (and x y z (do :all-truthy)))
 
+(defn simple-range [i limit]
+  (lazy-seq
+    (when (< i limit)
+      (cons i (simple-range (inc i) limit)))))
+
+(defn triangle [n]
+  (/ (* n (+ n 1)) 2))
+
+(def tri-nums (map triangle (iterate inc 1)))

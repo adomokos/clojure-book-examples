@@ -32,8 +32,28 @@
       (is (identical? (:L tree2) (:L tree3))))))
 
 
-(deftest investigating-laziness
+(deftest investigating-laziness-test
   (testing "expression is not evaluated if not needed"
     (is (= :all-truthy (if-chain '() 42 true)))
     (is (= :all-truthy (and-chain true true true)))
     (is (false? (and-chain true false true)))))
+
+(deftest understanding-lazy-sequences-test
+  (testing "using lazy-seq to create range"
+    (is (= '(0 1 2 3 4 5 6 7 8) (simple-range 0 9)))))
+
+(deftest using-infinite-sequences-test
+  (testing "looking at triangles of numbers"
+    (is (= 55 (triangle 10)))
+    (is (= '(1 3 6 10 15 21 28 36 45 55)
+           (map triangle (range 1 11)))))
+  (testing "get the first 10 of tri-nums"
+    (is (= '(1 3 6 10 15 21 28 36 45 55)
+           (take 10 tri-nums))))
+  (testing "get the first 10 even triangle numbers"
+    (is (= '(6 10 28 36 66 78 120 136 190 210)
+           (take 10 (filter even? tri-nums)))))
+  (testing "get the 99th item"
+    (is (= 5050 (nth tri-nums 99))))
+  (testing "get the first 2 larger than 10,000"
+    (is (= '(10011 10153) (take 2 (drop-while #(< % 10000) tri-nums))))))
