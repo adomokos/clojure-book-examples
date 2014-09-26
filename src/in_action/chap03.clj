@@ -32,3 +32,9 @@
 (def ^:dynamic *factor* 10)
 (defn multiply [x]
   (* x *factor*))
+
+(defn upcased-names [names]
+  (let [up-case (fn [name]
+                  (.toUpperCase name))]
+    (map up-case names)))
+

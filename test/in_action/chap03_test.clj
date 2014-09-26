@@ -54,3 +54,7 @@
              (doall
                (map multiply [1 2 3 4 5])))))))
 
+(deftest let-form-revisited-test
+  (testing "upcasing names"
+    (is (= '("JOHN" "PAUL")
+           (upcased-names ["John" "Paul"])))))
