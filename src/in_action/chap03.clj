@@ -1,23 +1,17 @@
 (ns in-action.chap03)
 
+;; We don't get much with these two functions
+;; Keywords are functions as well
 (defn username [user]
-  (user :username))
+  (:username user))
 
 (defn balance [user]
-  (user :balance))
+  (:balance user))
 
-(defn sorter-using
-  [ordering-fn users]
-    (sort-by ordering-fn users))
+(defn sorter-using [ordering-fn]
+  #(sort-by ordering-fn %))
 
-;(defn sort-by-balance
-  ;[users]
-  ;(sort-by balance users))
+(def ^:dynamic *db-host* "localhost")
 
-(defn sort-by-balance
-  [users]
-  (sorter-using balance users))
-
-(defn sort-by-name
-  [users]
-  (sorter-using username users))
+(defn expense-report [from-date to-date]
+  *db-host*)
