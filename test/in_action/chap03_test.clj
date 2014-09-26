@@ -34,3 +34,12 @@
     (is (= "localhost" (expense-report "2010-01-01" "2014-04-01"))))
   (binding [*db-host* "production"]
     (is (= "production" (expense-report "2010-01-01" "2014-04-01")))))
+
+(deftest dynamic-binding-with-aop-logging-test
+  (testing "calling twice with 10"
+    (is (= 20 (call-twice 10))))
+  (testing "calling twice with 20"
+    (is (= 40 (binding [twice (with-log twice "Calling the twice function")]
+                (call-twice 20)))))
+  (testing "calling twice with 30"
+    (is (= 60 (call-twice 30)))))

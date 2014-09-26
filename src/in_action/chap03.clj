@@ -15,3 +15,18 @@
 
 (defn expense-report [from-date to-date]
   *db-host*)
+
+
+(defn ^:dynamic twice [x]
+  ;;(println "original function")
+    (* 2 x))
+
+(defn call-twice [y]
+  (twice y))
+
+(defn with-log [function-to-call log-statement]
+  (fn [& args]
+    ;; (println log-statement)
+    (apply function-to-call args)))
+
+
