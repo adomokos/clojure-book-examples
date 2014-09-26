@@ -29,4 +29,6 @@
     ;; (println log-statement)
     (apply function-to-call args)))
 
-
+(def ^:dynamic *factor* 10)
+(defn multiply [x]
+  (* x *factor*))

@@ -43,3 +43,14 @@
                 (call-twice 20)))))
   (testing "calling twice with 30"
     (is (= 60 (call-twice 30)))))
+
+(deftest laziness-and-special-variables-test
+  (testing "calling mulitply as is"
+    (is (= '(10 20 30 40 50)
+           (map multiply [1 2 3 4 5]))))
+  (testing "changing the factor to 20"
+    (is (= '(20 40 60 80 100)
+           (binding [*factor* 20]
+             (doall
+               (map multiply [1 2 3 4 5])))))))
+
