@@ -58,3 +58,30 @@
   (testing "upcasing names"
     (is (= '("JOHN" "PAUL")
            (upcased-names ["John" "Paul"])))))
+
+(deftest vector-bindings-test
+  (testing "pulls items from a vector"
+    (is (= "amounts are: 10.95 31.45"
+           (print-amounts [10.95 31.45]))))
+  (testing "using & and :as"
+    (is (= "amounts are: 10.95 31.45 and (22.36 2.95)"
+           (print-amounts-multiple [10.95 31.45 22.36 2.95])))
+    (is (= "amounts are: 10.95 31.45 and (22.36 2.95) as [10.95 31.45 22.36 2.95]"
+           (print-all-amounts [10.95 31.45 22.36 2.95]))))
+  (testing "nested vectors"
+    (is (= "First category was: :books\nFirst amount was: 49.95"
+           (print-first-category [[:books 49.95] [:coffee 4.95] [:caltrain 2.25]])))))
+
+(def a-user {:first-name "pascal"
+             :last-name "dylan"
+             :salary 85000
+             :bonus-percentage 20})
+
+(deftest map-bindings-test
+  (testing "using :or"
+    (is (= "pascal dylan earns 85000 with a 20 percent bonus"
+           (describe-salary-3 a-user)))
+    (is (= "john smith earns 45000 with a 5 percent bonus"
+           (describe-salary-3 {:first-name "john"
+                               :last-name "smith"
+                               :salary 45000})))))

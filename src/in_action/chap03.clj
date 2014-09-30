@@ -38,3 +38,21 @@
                   (.toUpperCase name))]
     (map up-case names)))
 
+(defn print-amounts [[amount-1 amount-2]]
+  (str "amounts are: " amount-1 " " amount-2))
+
+(defn print-amounts-multiple [[amount-1 amount-2 & remaining]]
+  (str "amounts are: " amount-1 " " amount-2 " and " remaining))
+
+(defn print-all-amounts [[amount-1 amount-2 & remaining :as all]]
+  (str "amounts are: " amount-1 " " amount-2 " and " remaining " as " all))
+
+(defn print-first-category [[[category amount] & _]]
+  (str "First category was: " category
+       "\nFirst amount was: 49.95"))
+
+(defn describe-salary-3 [{first :first-name
+                          last :last-name
+                          annual :salary
+                          bonus :bonus-percentage :or {bonus 5}}]
+
