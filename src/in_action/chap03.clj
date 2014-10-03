@@ -55,4 +55,4 @@
                           last :last-name
                           annual :salary
                           bonus :bonus-percentage :or {bonus 5}}]
-
+  (str first " " last " earns " annual " with a " bonus " percent bonus"))
