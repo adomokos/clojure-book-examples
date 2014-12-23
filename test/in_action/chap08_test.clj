@@ -62,3 +62,26 @@
   (testing "finding the largest element in a vector"
     (is (= 9 (greatest-of [5 7 9 3 4 1 2 8])))
     (is (nil? (greatest-of [])))))
+
+(defn all-greater-than [threshold numbers]
+  (compute-accross #(if (> %2 threshold) (conj %1 %2) %1) numbers []))
+
+(defn all-greater-than-with-reduce [threshold numbers]
+  (reduce #(if (> %2 threshold) (conj %1 %2) %1) [] numbers))
+
+(deftest selecting-all-greater-items
+  (testing "based on a threshold value"
+    (is (= [7 9 8] (all-greater-than 5 [5 7 9 3 4 1 2 8])))
+    (is (= [7 9 8] (all-greater-than-with-reduce 5 [5 7 9 3 4 1 2 8])))))
+
+(defn all-lesser-than [threshold numbers]
+  (compute-accross #(if (< %2 threshold) (conj %1 %2) %1) numbers []))
+
+(defn all-lesser-than-with-reduce [threshold numbers]
+  (reduce #(if (< %2 threshold) (conj %1 %2) %1) [] numbers))
+
+(deftest selecting-all-less-than-items
+  (testing "based on a threshold value"
+    (is (= [3 4 1 2] (all-lesser-than 5 [5 7 9 3 4 1 2 8])))
+    (is (= [3 4 1 2] (all-lesser-than-with-reduce 5 [5 7 9 3 4 1 2 8])))))
+
