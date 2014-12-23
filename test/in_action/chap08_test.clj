@@ -20,7 +20,6 @@
     (cons (cube (first numbers))
           (cube-all (rest numbers)))))
 
-
 (deftest square-them
   (testing "square all the elements in a list"
     (is (= '(1 4 9 16 25 36) (square-all [1 2 3 4 5 6])))
@@ -28,4 +27,5 @@
 
 (deftest cube-them
   (testing "cube all the elements in a list"
-    (is (= '(1 8 27 64 125 216) (cube-all [1 2 3 4 5 6])))))
+    (is (= '(1 8 27 64 125 216) (cube-all [1 2 3 4 5 6])))
+    (is (empty? (cube-all [])))))
