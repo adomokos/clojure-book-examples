@@ -1,6 +1,7 @@
 (ns in-action.chap09-test
   (:require [clojure.test :refer :all])
-  (:import [java.text SimpleDateFormat]))
+  (:import [java.text SimpleDateFormat]
+           [java.util Calendar]))
 
 (defn new-expense [date-string dollars cents category merchant-name]
   {:date (.parse (SimpleDateFormat. "yyyy-MM-dd") date-string)
@@ -43,3 +44,30 @@
       (is (= 42577 (total-amount the-expenses)))
       (is (= 3763 (total-amount (category-is "books") the-expenses))))))
 
+(defrecord NewExpense [date amount-dollars amount-cents category
+                       merchant-name])
+(defn new-expense [date-string dollars cents category merchant-name]
+  (let [calendar-date (Calendar/getInstance)]
+    (.setTime calendar-date (.parse (SimpleDateFormat. "yyyy-MM-dd")
+                                    date-string))
+    (NewExpense. calendar-date dollars cents category merchant-name)))
+
+(defprotocol ExpenseCalculations
+  (total-cents-protocol [e])
+  (is-category-protocol? [e category]))
+
+(extend-type NewExpense
+  ExpenseCalculations
+  (total-cents-protocol [e]
+    (-> (:amount-dollars e)
+        (* 100)
+        (+ (:amount-cents e))))
+  (is-category-protocol? [e some-category]
+    (= (:category e) some-category)))
+
+(deftest testing-defrecord
+  (testing "creating an instance"
+    (let [expense (new-expense "2010-04-01" 29 95 "gift" "1-800-flowers")]
+      (is (= 29 (:amount-dollars expense)))
+      (is (= "1-800-flowers" (:merchant-name expense)))
+      (is (= 2995 (total-cents-protocol expense))))))
