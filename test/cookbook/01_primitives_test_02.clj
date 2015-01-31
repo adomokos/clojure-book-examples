@@ -43,6 +43,6 @@
       2 "monkey" "2 monkeys"
       1 "milk" "1 milk"
       2 "milk" "2 milk")
-  (is (= "MyObject" (inf/camelize "my_object")))
+  (is (= "MyObject" (inf/camel-case "my_object")))
   (is (= "my-most-favorite-url" (inf/parameterize "My most favorite url!")))
   (is (= "42nd" (inf/ordinalize 42))))
