@@ -53,3 +53,30 @@
     (= (Point. 2 3) (Point. 2 3))
     (= 3 3N)
     (= (Point. 3N 4N) (Point. 3N 4N))))
+
+(extend Point
+  Matrix
+  {:lookup (fn [pt i j]
+             (when (zero? j)
+               (case i
+                 0 (:x pt)
+                 1 (:y pt))))
+   :update (fn [pt i j value]
+             (if (zero? j)
+               (condp = i
+                 0 (Point. value (:y pt))
+                 1 (Point. (:x pt) value))
+               pt))
+   :rows (fn [pt]
+           [[(:x pt)] [(:y pt)]])
+   :cols (fn [pt]
+           [[(:x pt) (:y pt)]])
+   :dims (fn [pt] [2 1])})
+
+(deftest point-based-matrix-test
+  (testing "creating one"
+    (let [matrix [[(Point. 0 0) (Point. 0 1) (Point. 0 2)]
+                  [(Point. 1 0) (Point. 1 1) (Point. 1 2)]
+                  [(Point. 2 0) (Point. 2 1) (Point. 2 2)]]]))
+      (is (= nil (lookup matrix 0 0)))
+      (is (= 1 (lookup (update matrix 0 0 1) 0 0))))
